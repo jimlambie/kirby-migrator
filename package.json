@@ -1,6 +1,6 @@
 {
   "name": "kirby-migrator",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Migrate Kirby content folders to DADI API",
   "main": "kirby-migrator.js",
   "scripts": {
