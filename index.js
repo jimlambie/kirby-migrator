@@ -6,7 +6,7 @@ const fs = require('fs')
 const inflection = require('inflection')
 const mime = require('mime')
 // const marked = require('marked')
-const ora = require('ora');
+const ora = require('ora')
 const path = require('path')
 const readdirp = require('readdirp')
 const visiblePageRe = /^\d+-/
@@ -19,15 +19,15 @@ const KirbyMigrator = function (config, directory) {
 
 KirbyMigrator.prototype.getApi = function () {
   return new DadiAPI({
-   uri: this.config.api.host,
-   port: this.config.api.port,
-   credentials: {
-     clientId: this.config.api.clientId,
-     secret: this.config.api.secret
-   },
-   version: this.config.api.version,
-   database: this.config.api.database,
-   debug: true
+    uri: this.config.api.host,
+    port: this.config.api.port,
+    credentials: {
+      clientId: this.config.api.clientId,
+      secret: this.config.api.secret
+    },
+    version: this.config.api.version,
+    database: this.config.api.database,
+    debug: false
   })
 }
 
@@ -167,25 +167,25 @@ KirbyMigrator.prototype.createCollection = function (page) {
     let collectionName = this.getCollectionName(page.attributes.template)
 
     // ignores image/media files (templates with extensions)
-    if (collectionName.indexOf('.') > 0 ) return resolve()
+    if (collectionName.indexOf('.') > 0) return resolve()
 
     let collection = this.collections[collectionName] || {
-      "fields": {},
-      "settings": {
-        "cache": true,
-        "compose": true,
-        "cacheTTL": 300,
-        "publish": {
-          "group": "Main"
+      'fields': {},
+      'settings': {
+        'cache': true,
+        'compose': true,
+        'cacheTTL': 300,
+        'publish': {
+          'group': 'Main'
         },
-        "authenticate": true,
-        "allowExtension": false,
-        "callback": null,
-        "defaultFilters": {},
-        "fieldLimiters": {},
-        "storeSearch": false,
-        "displayName": inflection.titleize(collectionName),
-        "count": 50
+        'authenticate': true,
+        'allowExtension': false,
+        'callback': null,
+        'defaultFilters': {},
+        'fieldLimiters': {},
+        'storeSearch': false,
+        'displayName': inflection.titleize(collectionName),
+        'count': 50
       }
     }
 
@@ -236,7 +236,7 @@ KirbyMigrator.prototype.insertChildren = function (children) {
 
       delete thing.attributes
 
-      if (collectionName.indexOf('.') === -1 ) {
+      if (collectionName.indexOf('.') === -1) {
         queue.push(
           new Promise((resolve, reject) => {
             let imageWait = Promise.resolve([])
@@ -337,7 +337,7 @@ KirbyMigrator.prototype.insertItems = function (data) {
     data.forEach(thing => {
       let collectionName = this.getCollectionName(thing.attributes.template)
 
-      if (collectionName.indexOf('.') === -1 ) {
+      if (collectionName.indexOf('.') === -1) {
         let dataSpinner = ora('Inserting data for ' + collectionName + ':' + thing.uid).start()
 
         delete thing.attributes
@@ -452,19 +452,18 @@ migrator.load().then(data => {
 })
 
 const fieldTemplate = {
-  "type": "String",
-  "label": "",
+  'type': 'String',
+  'label': '',
 
-  "required": false,
-  "publish": {
-    "section": "Main",
-    "placement": "main",
+  'required': false,
+  'publish': {
+    'section': 'Main',
+    'placement': 'main',
     // "group": "Main",
-    "multiline": false,
-    "display": {
-      "edit": true,
-      "list": true
+    'multiline': false,
+    'display': {
+      'edit': true,
+      'list': true
     }
   }
 }
-
